@@ -154,19 +154,24 @@ if __name__ == '__main__':
         messageToAgent += str(counter) + ';'
         messageToAgent += str(avoidObstacleCounter) + ';'
         messageToAgent += str(p) + '\n'
-        print(messageToAgent + 'msg to agent')
+        #print(messageToAgent + 'msg to agent')
         M.messageToAgent_cl = messageToAgent
 
         messageFromAgent = M.messageFromAgent_cl
-        print('msg from agent: '+messageFromAgent)
+        #print('msg from agent: '+messageFromAgent)
         data = []
         if messageFromAgent != '':
             data = messageFromAgent.split(';')
-            leftSpeed = float(data[0])
-            rightSpeed = float(data[1])
-            counter = float(data[2])
-            avoidObstacleCounter = float(data[3])
-            p = float(data[4])
+            try:
+                leftSpeed = float(data[0])
+                rightSpeed = float(data[1])
+                counter = float(data[2])
+                avoidObstacleCounter = float(data[3])
+                p = float(data[4])
+            except Exception:
+                print(M.name)
+                print(messageFromAgent)
+                print(traceback.format_exc())
             if counter != 0:
                 leftSpeed = -2
                 rightSpeed = 2
